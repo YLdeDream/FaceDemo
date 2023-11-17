@@ -22,7 +22,6 @@ class App : Application() {
         instance = this
         //mmKv初始化
         MvvmHelper.init(this, true)
-
         MMKV.initialize(this)
         //dialog 初始化
         DialogX.init(this);
