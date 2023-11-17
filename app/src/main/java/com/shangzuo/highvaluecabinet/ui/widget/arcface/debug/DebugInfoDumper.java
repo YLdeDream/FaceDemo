@@ -8,7 +8,7 @@ import android.graphics.Rect;
 import com.arcsoft.face.FaceEngine;
 import com.arcsoft.face.FaceInfo;
 import com.arcsoft.face.VersionInfo;
-import com.shangzuo.highvaluecabinet.app.App;
+import com.shangzuo.highvaluecabinet.app.FaceApp;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ConfigUtil;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.FileUtil;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.debug.model.BasicInfo;
@@ -45,8 +45,8 @@ public class DebugInfoDumper {
     public static String basicInfoFilePath;
 
     static {
-        LOG_ROOT_DIR = App.instance.getExternalFilesDir("debugDump").toString();
-        CRASH_LOG_DIR =  App.instance.getExternalFilesDir("crashLog").toString();
+        LOG_ROOT_DIR = FaceApp.instance.getExternalFilesDir("debugDump").toString();
+        CRASH_LOG_DIR =  FaceApp.instance.getExternalFilesDir("crashLog").toString();
     }
 
     private static volatile DebugInfoDumper instance = null;
@@ -198,7 +198,7 @@ public class DebugInfoDumper {
     }
 
     public static String getBasicInfo() {
-        Context context =App.instance;
+        Context context = FaceApp.instance;
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         String memory = "unknown";
         if (activityManager != null) {

@@ -19,7 +19,7 @@ import com.arcsoft.face.enums.DetectFaceOrientPriority;
 import com.arcsoft.face.enums.DetectMode;
 import com.shangzuo.highvaluecabinet.R;
 
-import com.shangzuo.highvaluecabinet.app.App;
+import com.shangzuo.highvaluecabinet.app.FaceApp;
 import com.shangzuo.highvaluecabinet.app.base.UserInfo;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.CompareResult;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ConfigUtil;
@@ -218,15 +218,15 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
         updateRegisterStatus(REGISTER_STATUS_PROCESSING);
         registerNv21Disposable = Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
                     FaceEngine registerEngine = new FaceEngine();
-                    int res = registerEngine.init(App.instance, DetectMode.ASF_DETECT_MODE_IMAGE, DetectFaceOrientPriority.ASF_OP_0_ONLY,
+                    int res = registerEngine.init(FaceApp.instance, DetectMode.ASF_DETECT_MODE_IMAGE, DetectFaceOrientPriority.ASF_OP_0_ONLY,
                             1, FaceEngine.ASF_FACE_RECOGNITION);
                     if (res == ErrorInfo.MOK) {
                         boolean success;
                         if (registerInfo!=null){
-                            success = FaceServer.getInstance().registerNv21(App.instance, nv21.clone(), previewSize.width,
+                            success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
                                     previewSize.height, facePreviewInfo, registerInfo.getRealName()+"_" + registerInfo.getUserid(), frEngine, registerEngine);
                         }else {
-                            success = FaceServer.getInstance().registerNv21(App.instance, nv21.clone(), previewSize.width,
+                            success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
                                     previewSize.height, facePreviewInfo, "Unknown_" + faceHelper.getTrackedFaceCount(), frEngine, registerEngine);
                         }
                         registerEngine.unInit();
@@ -276,7 +276,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
      * 初始化引擎
      */
     public void init() {
-        Context context = App.instance;
+        Context context = FaceApp.instance;
         boolean switchCamera = ConfigUtil.isSwitchCamera(context);
         previewConfig = new PreviewConfig(
                 switchCamera ? Camera.CameraInfo.CAMERA_FACING_FRONT : Camera.CameraInfo.CAMERA_FACING_BACK,
@@ -396,7 +396,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
     public void destroy() {
         unInit();
         if (faceHelper != null) {
-            ConfigUtil.setTrackedFaceCount(App.instance, faceHelper.getTrackedFaceCount());
+            ConfigUtil.setTrackedFaceCount(FaceApp.instance, faceHelper.getTrackedFaceCount());
             faceHelper.release();
             faceHelper = null;
         }
@@ -440,7 +440,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
                 trackedFaceCount = faceHelper.getTrackedFaceCount();
                 faceHelper.release();
             }
-            Context context = App.instance;
+            Context context = FaceApp.instance;
             int horizontalOffset = ConfigUtil.getDualCameraHorizontalOffset(context);
             int verticalOffset = ConfigUtil.getDualCameraVerticalOffset(context);
             int maxDetectFaceNum = ConfigUtil.getRecognizeMaxDetectFaceNum(context);
@@ -616,7 +616,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
                 if (facePreviewInfo.getMask() != MaskInfo.WORN) {
                     registerFace(nv21, facePreviewInfoList.get(0));
                 } else {
-                    Toast.makeText(App.instance, "注册照要求不戴口罩", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceApp.instance, "注册照要求不戴口罩", Toast.LENGTH_SHORT).show();
                     updateRegisterStatus(REGISTER_STATUS_DONE);
                 }
             }
@@ -648,7 +648,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
     }
 
     public Point loadPreviewSize() {
-        String[] size = ConfigUtil.getPreviewSize(App.instance).split("x");
+        String[] size = ConfigUtil.getPreviewSize(FaceApp.instance).split("x");
         return new Point(Integer.parseInt(size[0]), Integer.parseInt(size[1]));
     }
 }

@@ -22,7 +22,7 @@ import com.arcsoft.imageutil.ArcSoftImageFormat;
 import com.arcsoft.imageutil.ArcSoftImageUtil;
 import com.arcsoft.imageutil.ArcSoftImageUtilError;
 import com.arcsoft.imageutil.ArcSoftRotateDegree;
-import com.shangzuo.highvaluecabinet.app.App;
+import com.shangzuo.highvaluecabinet.app.FaceApp;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.CompareResult;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ErrorCodeUtil;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ImageUtil;
@@ -157,7 +157,7 @@ public class FaceServer {
         if (faceEngine != null) {
             faceEngine.removeFaceFeature(-1);
         }
-        Context applicationContext = App.instance.getApplicationContext();
+        Context applicationContext = FaceApp.instance.getApplicationContext();
         int deleteSize = FaceDatabase.getInstance(applicationContext).faceDao().deleteAll();
         File imgDir = new File(getImageDir());
         File[] files = imgDir.listFiles();
@@ -274,7 +274,7 @@ public class FaceServer {
      * @return 存放注册照的文件夹路径
      */
     private String getImageDir() {
-        return App.instance.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return FaceApp.instance.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
                 + File.separator + "faceDB" + File.separator + "registerFaces";
     }
 
@@ -498,7 +498,7 @@ public class FaceServer {
             Log.i(TAG, "searchCost:" + (System.currentTimeMillis() - searchStart) + "ms");
             if (searchResult != null) {
                 FaceFeatureInfo faceFeatureInfo = searchResult.getFaceFeatureInfo();
-                FaceEntity faceEntity = FaceDatabase.getInstance(App.instance).faceDao().queryByFaceId(faceFeatureInfo.getSearchId());
+                FaceEntity faceEntity = FaceDatabase.getInstance(FaceApp.instance).faceDao().queryByFaceId(faceFeatureInfo.getSearchId());
                 if (faceEntity != null) {
                     return new CompareResult(faceEntity, searchResult.getMaxSimilar(), ErrorInfo.MOK, System.currentTimeMillis() - start);
                 }
