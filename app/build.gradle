@@ -12,8 +12,8 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.YLdeDream'
-                artifactId = 'FaceMoudle'
-                version = '1.0.1'
+                artifactId = 'FaceDemo'
+                version = '1.0.2'
             }
         }
     }
@@ -65,7 +65,7 @@ kapt {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.github.YLdeDream:Mvvm:1.0.7'
+    api 'com.github.YLdeDream:Mvvm:1.0.7'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.1'
     implementation 'androidx.core:core-ktx:1.10.1'

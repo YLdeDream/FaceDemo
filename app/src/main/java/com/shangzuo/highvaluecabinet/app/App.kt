@@ -24,7 +24,8 @@ class App : Application() {
         MvvmHelper.init(this, true)
         MMKV.initialize(this)
         //dialog 初始化
-        DialogX.init(this);
+        DialogX.init(this)
+
         DialogX.globalStyle = IOSStyle()
 
 
