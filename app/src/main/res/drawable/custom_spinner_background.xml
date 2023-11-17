@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/white" />
+    <item
+        android:right="10dp"
+        android:width="20dp"
+        android:height="20dp"
+        android:gravity="end|center_vertical"
+        android:drawable="@mipmap/icon_arrow_down" />
+    <!-- 添加边框 -->
+    <item android:drawable="@drawable/shape_edittext" />
+</layer-list>

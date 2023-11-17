@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'maven-publish'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.YLdeDream'
+                artifactId = 'FaceMoudle'
+                version = '1.0.1'
+            }
+        }
+    }
+}
+
+
+android {
+    namespace 'com.shangzuo.highvaluecabinet'
+    compileSdk 33
+    lintOptions {
+        disable 'NullSafeMutableLiveData'
+    }
+    defaultConfig {
+       // applicationId "com.shangzuo.highvaluecabinet"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+kapt {
+//    arguments {
+//        arg("rxhttp_rxjava", "3.1.6")
+//    }
+    useBuildCache = true // 可选，启用 Gradle 缓存以提高性能
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.YLdeDream:Mvvm:1.0.7'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    api files('libs\\reader.jar')
+    api files('libs\\arcsoft_face.jar')
+    api files('libs\\arcsoft_image_util.jar')
+    testImplementation 'junit:junit:4.13.2'
+
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    api "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
+    api "androidx.room:room-ktx:2.2.5"
+
+    api "com.kongzue.dialogx:DialogX:0.0.48"
+    api "com.kongzue.dialogx.style:DialogXIOSStyle:0.0.48"
+    api 'com.tencent:mmkv:1.3.1'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    // rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    // crash dump
+    implementation 'com.iqiyi.xcrash:xcrash-android-lib:2.4.9'
+}

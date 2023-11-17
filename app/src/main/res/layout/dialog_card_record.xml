@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kongzue.dialogx.util.views.DialogXBaseRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/box_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black20"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:paddingEnd="200dp"
+        android:paddingStart="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.kongzue.dialogx.util.views.MaxRelativeLayout
+            android:id="@+id/bkg"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/rect_dialogx_material_bkg_light"
+            android:elevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="IC卡录入"
+                    android:textStyle="bold"
+                    android:textColor="@color/mainColor"
+                    android:textSize="22sp" />
+
+                <RelativeLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/icon_card" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/box_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:background="@drawable/button_dialogx_material_light"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="取消"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15dp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/btn_sure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:background="@drawable/button_dialogx_material_light"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="确定"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </com.kongzue.dialogx.util.views.MaxRelativeLayout>
+
+    </RelativeLayout>
+
+</com.kongzue.dialogx.util.views.DialogXBaseRelativeLayout>

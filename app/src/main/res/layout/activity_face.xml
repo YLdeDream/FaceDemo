@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="compareResultList"
+            type="java.util.List&lt;com.shangzuo.highvaluecabinet.ui.widget.arcface.CompareResult&gt;" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3C818181"
+        tools:context=".ui.activity.FaceActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="120dp"
+            android:layout_marginEnd="250dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="100dp"
+            android:background="@color/mainColor">
+
+            <FrameLayout
+                android:layout_margin="5dp"
+                android:background="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextureView
+                    android:id="@+id/dual_camera_texture_preview_rgb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.shangzuo.highvaluecabinet.ui.widget.arcface.FaceRectView
+                    android:id="@+id/dual_camera_face_rect_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+
+            <Button
+                android:id="@+id/bt_register"
+                android:layout_marginBottom="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="点击注册"
+                android:textSize="25sp"
+                android:onClick="register"
+                android:layout_width="180dp"
+                android:layout_height="70dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/dual_camera_recycler_view_person"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:compareResultList="@{compareResultList}" />
+
+            <ImageView
+                android:onClick="finish"
+                android:layout_margin="15dp"
+                android:layout_alignParentEnd="true"
+                android:src="@mipmap/icon_close"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

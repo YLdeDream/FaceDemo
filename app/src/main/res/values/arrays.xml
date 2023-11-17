@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string-array name="registerSteps">
+        <item>开启注册</item>
+        <item>采样</item>
+        <item>采样</item>
+        <item>采样</item>
+        <item>注册成功</item>
+    </string-array>
+
+    <string-array name="cabinet">
+        <item>主柜</item>
+        <item>副柜1</item>
+        <item>副柜2</item>
+        <item>副柜3</item>
+        <item>副柜4</item>
+    </string-array>
+</resources>
