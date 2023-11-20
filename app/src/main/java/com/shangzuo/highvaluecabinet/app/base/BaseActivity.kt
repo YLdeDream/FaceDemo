@@ -22,6 +22,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : BaseVBActivi
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         ev?.let {
             if (it.action == MotionEvent.ACTION_DOWN) {
+
                 //如果现在取得焦点的View为EditText则进入判断
                 currentFocus?.let { view ->
                     if (view is EditText) {
