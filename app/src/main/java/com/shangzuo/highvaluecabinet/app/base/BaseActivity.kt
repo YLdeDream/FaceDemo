@@ -32,6 +32,7 @@ abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : BaseVBActivi
                 }
             }
         }
+
         return super.dispatchTouchEvent(ev)
     }
 
