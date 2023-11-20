@@ -65,7 +65,7 @@ kapt {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.github.YLdeDream:Mvvm:1.0.7'
+    implementation 'com.github.YLdeDream:Mvvm:1.0.9'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.1'
     implementation 'androidx.core:core-ktx:1.10.1'

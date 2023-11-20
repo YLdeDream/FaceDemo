@@ -10,8 +10,8 @@ import com.tencent.mmkv.MMKV
 
 
 object FaceApp {
-    //柜1对应的锁号
 
+    //柜1对应的锁号
     lateinit var instance: Application
     fun getInstanceApp(): Application {
         return instance
