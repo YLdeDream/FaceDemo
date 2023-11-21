@@ -183,6 +183,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
                 displayOrientation: Int,
                 isMirror: Boolean
             ) {
+
                 runOnUiThread {
                     val previewSizeRgb =
                         camera.parameters.previewSize
