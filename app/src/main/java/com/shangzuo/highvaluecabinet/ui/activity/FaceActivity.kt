@@ -322,7 +322,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
         val layoutParams = previewView.layoutParams
         val measuredWidth = previewView.measuredWidth
         val measuredHeight = previewView.measuredHeight
-        var ratio = previewSize.height.toFloat() / previewSize.width.toFloat()
+        var ratio = previewSize.width.toFloat() / previewSize.height.toFloat()
         if (ratio > 1) {
             ratio = 1 / ratio
         }
