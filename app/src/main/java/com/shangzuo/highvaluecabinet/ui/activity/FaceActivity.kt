@@ -331,11 +331,8 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
             layoutParams.width = measuredWidth
             layoutParams.height = (measuredWidth * ratio).toInt()
         } else {
-            layoutParams.width = measuredWidth
-            layoutParams.height = (measuredWidth * ratio).toInt()
-
-//            layoutParams.height = measuredHeight
-//            layoutParams.width = (measuredHeight * ratio).toInt()
+            layoutParams.height = measuredHeight
+            layoutParams.width = (measuredHeight * ratio).toInt()
         }
         if (scale < 1f) {
             val rgbParam = rgbPreview.layoutParams
