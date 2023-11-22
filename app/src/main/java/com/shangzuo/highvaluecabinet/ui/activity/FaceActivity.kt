@@ -328,16 +328,16 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
             ratio = 1 / ratio
         }
         if (displayOrientation % 180 == 0) {
-            layoutParams.width = measuredWidth
-            layoutParams.height = (measuredWidth * ratio).toInt()
+            layoutParams.width = rgbPreview.width  // 将宽度设置为与rgbPreview相匹配
+            layoutParams.height = (rgbPreview.width * ratio).toInt()  // 根据纵横比调整高度
         } else {
-            layoutParams.height = measuredHeight
-            layoutParams.width = (measuredHeight * ratio).toInt()
+            layoutParams.height = rgbPreview.width  // 将高度设置为与rgbPreview相匹配
+            layoutParams.width = (rgbPreview.width * ratio).toInt()  // 根据纵横比调整宽度
         }
         if (scale < 1f) {
-            val rgbParam = rgbPreview.layoutParams
-            layoutParams.width = (rgbParam.width * scale).toInt()
-            layoutParams.height = (rgbParam.height * scale).toInt()
+            // 根据比例调整宽度和高度
+            layoutParams.width = (layoutParams.width * scale).toInt()
+            layoutParams.height = (layoutParams.height * scale).toInt()
         } else {
             layoutParams.width *= scale.toInt()
             layoutParams.height *= scale.toInt()
@@ -355,7 +355,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
             layoutParams.height /= viewRatio.toInt()
         }
         previewView.layoutParams = layoutParams
-        faceRectView.setLayoutParams(layoutParams)
+        faceRectView.layoutParams = layoutParams  // 同时更新faceRectView的布局参数
         return layoutParams
     }
 

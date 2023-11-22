@@ -35,7 +35,7 @@ public class NavigationView extends RelativeLayout {
 
             TextView tv_title = findViewById(R.id.tv_navigation_title);
             TextView tv_count_down=findViewById(R.id.tv_count_down);
-            MaterialButton iv_back =findViewById(R.id.iv_back);
+            ImageView iv_back =findViewById(R.id.iv_back);
             iv_back.setOnClickListener(view -> {
                 Activity activity = (Activity) context;
                 // 关闭当前 Activity
