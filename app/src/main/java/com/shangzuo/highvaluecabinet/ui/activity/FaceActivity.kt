@@ -143,6 +143,10 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
                     if (!isStart) {
 //                        startActivity(Intent(this@FaceActivity, ChooseCabinetActivity::class.java))
 //                        finish()
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("faceId", it)
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish()
                     }
                     isStart = true
                 }
