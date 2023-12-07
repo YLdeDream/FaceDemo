@@ -51,6 +51,14 @@ public class FaceEntity implements Parcelable {
         registerTime = System.currentTimeMillis();
     }
 
+    public FaceEntity(String faceIdStr, String userName, String imagePath, byte[] featureData) {
+        this.faceId = Long.parseLong(faceIdStr);
+        this.userName = userName;
+        this.imagePath = imagePath;
+        this.featureData = featureData;
+        registerTime = System.currentTimeMillis();
+    }
+
     public FaceEntity(FaceEntity faceEntity) {
         this.faceId = faceEntity.faceId;
         this.userName = faceEntity.userName;

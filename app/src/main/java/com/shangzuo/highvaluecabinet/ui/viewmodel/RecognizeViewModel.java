@@ -224,7 +224,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
                         boolean success;
                         if (registerInfo!=null){
                             success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
-                                    previewSize.height, facePreviewInfo, registerInfo.getRealName()+"_" + registerInfo.getUserid(), frEngine, registerEngine);
+                                    previewSize.height, facePreviewInfo, registerInfo.getRealName()+"_" + registerInfo.getUserid(), frEngine, registerEngine,registerInfo);
                         }else {
                             success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
                                     previewSize.height, facePreviewInfo, "Unknown_" + faceHelper.getTrackedFaceCount(), frEngine, registerEngine);

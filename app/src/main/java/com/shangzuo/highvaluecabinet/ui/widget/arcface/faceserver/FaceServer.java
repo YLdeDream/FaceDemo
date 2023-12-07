@@ -23,6 +23,7 @@ import com.arcsoft.imageutil.ArcSoftImageUtil;
 import com.arcsoft.imageutil.ArcSoftImageUtilError;
 import com.arcsoft.imageutil.ArcSoftRotateDegree;
 import com.shangzuo.highvaluecabinet.app.FaceApp;
+import com.shangzuo.highvaluecabinet.app.base.UserInfo;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.CompareResult;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ErrorCodeUtil;
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.ImageUtil;
@@ -228,6 +229,63 @@ public class FaceServer {
                 return false;
             }
             FaceEntity faceEntity = new FaceEntity(name, imgPath, faceFeature.getFeatureData());
+            long faceId = FaceDatabase.getInstance(context).faceDao().insert(faceEntity);
+            faceEntity.setFaceId(faceId);
+            registerFaceFeatureInfoFromDb(faceEntity, frEngine);
+            return true;
+        }
+    }
+
+
+
+    public boolean registerNv21(Context context, byte[] nv21, int width, int height, FacePreviewInfo faceInfo, String name,
+                                FaceEngine frEngine, FaceEngine registerFaceEngine, UserInfo userInfo) {
+        if (registerFaceEngine == null || context == null || nv21 == null || width % 4 != 0 || nv21.length != width * height * 3 / 2) {
+            Log.e(TAG, "registerNv21: invalid params");
+            return false;
+        }
+        FaceFeature faceFeature = new FaceFeature();
+        int code;
+        /*
+         * 特征提取，注册人脸时extractType值为ExtractType.REGISTER，mask的值为MaskInfo.NOT_WORN
+         */
+        synchronized (registerFaceEngine) {
+            code = registerFaceEngine.extractFaceFeature(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfo.getFaceInfoRgb(),
+                    ExtractType.REGISTER, MaskInfo.NOT_WORN, faceFeature);
+        }
+        if (code != ErrorInfo.MOK) {
+            Log.e(TAG, "registerNv21: extractFaceFeature failed , code is " + code);
+            return false;
+        } else {
+            /*
+             * 1.保存注册结果（注册图、特征数据）
+             * 2.为了美观，扩大rect截取注册图
+             */
+            Rect cropRect = getBestRect(width, height, faceInfo.getFaceInfoRgb().getRect());
+            if (cropRect == null) {
+                Log.e(TAG, "registerNv21: cropRect is null!");
+                return false;
+            }
+
+            cropRect.left &= ~3;
+            cropRect.top &= ~3;
+            cropRect.right &= ~3;
+            cropRect.bottom &= ~3;
+
+            // 创建一个头像的Bitmap，存放旋转结果图
+            Bitmap headBmp = getHeadImage(nv21, width, height, faceInfo.getFaceInfoRgb().getOrient(), cropRect, ArcSoftImageFormat.NV21);
+            String imgPath = getImagePath(name);
+            try {
+                FileOutputStream fos = new FileOutputStream(imgPath);
+                headBmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+            FaceEntity faceEntity = new FaceEntity(userInfo.getUserid(),name, imgPath, faceFeature.getFeatureData());
+            //FaceDatabase.getInstance(context).faceDao().queryByFaceId(Long.parseLong(userInfo.getUserid()))
+
             long faceId = FaceDatabase.getInstance(context).faceDao().insert(faceEntity);
             faceEntity.setFaceId(faceId);
             registerFaceFeatureInfoFromDb(faceEntity, frEngine);

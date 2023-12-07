@@ -126,6 +126,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
             PopTip.show(if (success) "注册成功" else "注册失败，请重新注册")
             if (success){
                 val resultIntent = Intent()
+                Log.e("FaceActivity", "OnRegisterFinished: "+facePreviewInfo.faceInfoRgb.faceId )
                 resultIntent.putExtra("faceId", facePreviewInfo.faceInfoRgb.faceId)
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish()
