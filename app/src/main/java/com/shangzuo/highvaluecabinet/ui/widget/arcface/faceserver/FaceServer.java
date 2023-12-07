@@ -285,8 +285,12 @@ public class FaceServer {
             }
             FaceEntity faceEntity = new FaceEntity(userInfo.getUserid(),name, imgPath, faceFeature.getFeatureData());
             //FaceDatabase.getInstance(context).faceDao().queryByFaceId(Long.parseLong(userInfo.getUserid()))
-
+            Log.e(TAG, "registerNv21  1: ========="+userInfo.getUserid());
+            faceEntity.setFaceId(Long.parseLong(userInfo.getUserid()));
+            Log.e(TAG, "registerNv21  2: ========="+faceEntity.getFaceId());
             long faceId = FaceDatabase.getInstance(context).faceDao().insert(faceEntity);
+            Log.e(TAG, "faceId: ========="+userInfo.getUserid());
+
             faceEntity.setFaceId(faceId);
             registerFaceFeatureInfoFromDb(faceEntity, frEngine);
             return true;
