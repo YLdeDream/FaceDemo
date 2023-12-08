@@ -63,7 +63,6 @@ class FaceManageViewModel : BaseViewModel() {
             if (faceList.value != null) {
                 val currentList = faceList.value?.toMutableList() ?: mutableListOf()
                 currentList.removeIf { it.faceId == faceEntity?.faceId }
-                faceList.value = currentList
                 faceList.postValue(currentList)
             }
             FaceServer.getInstance().removeOneFace(faceEntity)

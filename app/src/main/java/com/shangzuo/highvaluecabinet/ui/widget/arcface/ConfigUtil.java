@@ -42,7 +42,7 @@ public class ConfigUtil {
     /**
      * 图像质量检测阈值：未戴口罩，且在人脸识别场景下
      */
-    public static final float IMAGE_QUALITY_NO_MASK_RECOGNIZE_THRESHOLD = 0.49f;
+    public static final float IMAGE_QUALITY_NO_MASK_RECOGNIZE_THRESHOLD = 0.45f;
     /**
      * 图像质量检测阈值：未戴口罩，且在人脸注册场景下
      */

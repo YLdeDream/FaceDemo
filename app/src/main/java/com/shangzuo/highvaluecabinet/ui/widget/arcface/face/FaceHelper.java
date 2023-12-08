@@ -479,11 +479,15 @@ public class FaceHelper implements FaceListener {
             }
             //不做活体检测的情况，直接搜索
             if (!recognizeConfiguration.isEnableLiveness()) {
+                Log.e(TAG, "onFaceFeatureInfoGet:不做活体检测的情况，直接搜索 " );
                 searchFace(faceFeature, trackId);
             }
             //活体检测通过，搜索特征
             else if (recognizeInfo.getLiveness() == LivenessInfo.ALIVE) {
+                Log.e(TAG, "onFaceFeatureInfoGet:活体检测通过，搜索特征" );
+
                 searchFace(faceFeature, trackId);
+
             }
             //活体检测未出结果，或者非活体，等待
             else {
