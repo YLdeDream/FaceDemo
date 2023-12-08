@@ -701,7 +701,7 @@ public class FaceHelper implements FaceListener {
                             if (quality >= destQuality) {
                                 extractFace();
                             } else {
-                                onFaceFail(iqCode, "fr imageQualityDetect score invalid");
+                                onFaceFail(iqCode, "fr imageQualityDetect score invalid:  "+quality);
                             }
                         } else {
                             onFaceFail(iqCode, "fr imageQuality failed errorCode is " + iqCode);
