@@ -18,6 +18,9 @@ object FaceApp {
     }
     lateinit var app: Application
 
+    @JvmField
+    var isEnableLive = true
+
     fun init(application: Application) {
         app = application
         instance = application

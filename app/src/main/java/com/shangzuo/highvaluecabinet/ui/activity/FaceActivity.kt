@@ -195,7 +195,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
                     val layoutParams: ViewGroup.LayoutParams? = adjustPreviewViewSize(
                         mBind.dualCameraTexturePreviewRgb,
                         mBind.dualCameraTexturePreviewRgb, mBind.dualCameraFaceRectView,
-                        previewSizeRgb, displayOrientation, 2.0f
+                        previewSizeRgb, displayOrientation, 1.5f
                     )
                     if (layoutParams != null) {
                         rgbFaceRectTransformer = FaceRectTransformer(
