@@ -131,7 +131,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
     private MutableLiveData<Integer> ftInitCode = new MutableLiveData<>();
     private MutableLiveData<Integer> frInitCode = new MutableLiveData<>();
     private MutableLiveData<Integer> flInitCode = new MutableLiveData<>();
-    public MutableLiveData<Long> recognizeTrackId = new MutableLiveData<>();
+    public MutableLiveData<String> recognizeTrackId = new MutableLiveData<>();
 
     /**
      * 人脸操作辅助类，推帧即可，内部会进行特征提取、识别
@@ -470,7 +470,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
         Disposable disposable = Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
             Log.e(TAG, "onRecognized: similarPass==="+similarPass );
             if (similarPass) {
-                recognizeTrackId.postValue(compareResult.getFaceEntity().getFaceId());
+                recognizeTrackId.postValue(compareResult.getFaceEntity().getUserName());
                 Log.e(TAG, "onRecognized: "+compareResult.getFaceEntity().getUserName() );
                 boolean isAdded = false;
                 List<CompareResult> compareResults = compareResultList.getValue();

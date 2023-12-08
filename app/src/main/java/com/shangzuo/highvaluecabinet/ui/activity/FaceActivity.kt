@@ -16,6 +16,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.arcsoft.face.ErrorInfo
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kongzue.dialogx.dialogs.PopTip
 import com.shangzuo.highvaluecabinet.R
@@ -127,7 +128,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
             if (success){
                 val resultIntent = Intent()
                 Log.e("FaceActivity", "OnRegisterFinished: "+facePreviewInfo.faceInfoRgb.faceId )
-                resultIntent.putExtra("faceId", facePreviewInfo.faceInfoRgb.faceId)
+                resultIntent.putExtra("faceId", ConvertUtils.bytes2String( facePreviewInfo.faceInfoRgb.faceData))
                 setResult(Activity.RESULT_OK, resultIntent)
                 finish()
             }
@@ -145,7 +146,7 @@ class FaceActivity : BaseActivity<RecognizeViewModel, ActivityFaceBinding>(),
 //                        startActivity(Intent(this@FaceActivity, ChooseCabinetActivity::class.java))
 //                        finish()
                         val resultIntent = Intent()
-                        resultIntent.putExtra("faceId", it)
+                        resultIntent.putExtra("faceId", it.split("_")[1])
                         setResult(Activity.RESULT_OK, resultIntent)
                         finish()
                     }
