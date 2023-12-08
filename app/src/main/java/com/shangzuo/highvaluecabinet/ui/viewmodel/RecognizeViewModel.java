@@ -319,12 +319,12 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
         if (enableFaceQualityDetect) {
             frEngineMask |= FaceEngine.ASF_IMAGEQUALITY;
         }
-        frInitCode.postValue(frEngine.init(context, DetectMode.ASF_DETECT_MODE_IMAGE, DetectFaceOrientPriority.ASF_OP_0_ONLY,
+        frInitCode.postValue(frEngine.init(context, DetectMode.ASF_DETECT_MODE_IMAGE, DetectFaceOrientPriority.ASF_OP_ALL_OUT,
                 10, frEngineMask));
         Log.e(TAG, "initFaceList: start");
         FaceServer.getInstance().initFaceList(context, frEngine, faceCount -> {
                     loadFaceList = true;
-                    Log.e(TAG, "initFaceList: true");
+                    Log.e(TAG, "initFaceList: true"+faceCount);
                 }, true);
         Log.e(TAG, "initFaceList: end");
         //启用活体检测时，才初始化活体引擎
