@@ -224,7 +224,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
                         boolean success;
                         if (registerInfo!=null){
                             success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
-                                    previewSize.height, facePreviewInfo, registerInfo.getRealName()+"_" + registerInfo.getUserid(), frEngine, registerEngine,registerInfo);
+                                    previewSize.height, facePreviewInfo, registerInfo.getRealName()+"_" + registerInfo.getUserid(), frEngine, registerEngine);
                         }else {
                             success = FaceServer.getInstance().registerNv21(FaceApp.instance, nv21.clone(), previewSize.width,
                                     previewSize.height, facePreviewInfo, "Unknown_" + faceHelper.getTrackedFaceCount(), frEngine, registerEngine);
@@ -468,8 +468,10 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
     @Override
     public void onRecognized(CompareResult compareResult, Integer live, boolean similarPass) {
         Disposable disposable = Observable.just(true).observeOn(AndroidSchedulers.mainThread()).subscribe(aBoolean -> {
+            Log.e(TAG, "onRecognized: similarPass==="+similarPass );
             if (similarPass) {
                 recognizeTrackId.postValue(compareResult.getFaceEntity().getFaceId());
+                Log.e(TAG, "onRecognized: "+compareResult.getFaceEntity().getUserName() );
                 boolean isAdded = false;
                 List<CompareResult> compareResults = compareResultList.getValue();
                 if (compareResults != null && !compareResults.isEmpty()) {

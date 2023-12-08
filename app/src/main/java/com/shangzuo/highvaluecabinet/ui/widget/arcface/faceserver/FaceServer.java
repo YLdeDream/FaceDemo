@@ -231,6 +231,7 @@ public class FaceServer {
             FaceEntity faceEntity = new FaceEntity(name, imgPath, faceFeature.getFeatureData());
             long faceId = FaceDatabase.getInstance(context).faceDao().insert(faceEntity);
             faceEntity.setFaceId(faceId);
+            Log.e(TAG, "faceId: ========="+faceId);
             registerFaceFeatureInfoFromDb(faceEntity, frEngine);
             return true;
         }
@@ -283,7 +284,7 @@ public class FaceServer {
                 e.printStackTrace();
                 return false;
             }
-            FaceEntity faceEntity = new FaceEntity(userInfo.getUserid(),name, imgPath, faceFeature.getFeatureData());
+            FaceEntity faceEntity = new FaceEntity(name, imgPath, faceFeature.getFeatureData());
             //FaceDatabase.getInstance(context).faceDao().queryByFaceId(Long.parseLong(userInfo.getUserid()))
             Log.e(TAG, "registerNv21  1: ========="+userInfo.getUserid());
             faceEntity.setFaceId(Long.parseLong(userInfo.getUserid()));

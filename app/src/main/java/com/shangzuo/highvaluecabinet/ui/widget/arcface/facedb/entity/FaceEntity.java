@@ -20,7 +20,7 @@ public class FaceEntity implements Parcelable {
     /**
      * 人脸id，主键
      */
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     private long faceId;
     /**
      * 用户名称
