@@ -640,10 +640,12 @@ public class FaceHelper implements FaceListener {
         boolean pass = compareResult.getSimilar() > recognizeConfiguration.getSimilarThreshold();
         recognizeCallback.onRecognized(compareResult, getRecognizeInfo(recognizeInfoMap, trackId).getLiveness(), pass);
         if (pass) {
+            Log.e(TAG, "searchFace: 识别通过"+trackId );
             setName(trackId, "识别通过");
             noticeCurrentStatus("识别通过");
             changeRecognizeStatus(trackId, RequestFeatureStatus.SUCCEED);
         } else {
+            Log.e(TAG, "searchFace: 识别未通过"+trackId );
             noticeCurrentStatus("未通过");
             retryRecognizeDelayed(trackId);
         }

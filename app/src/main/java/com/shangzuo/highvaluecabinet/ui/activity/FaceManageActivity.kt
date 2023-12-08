@@ -1,13 +1,12 @@
 package com.shangzuo.highvaluecabinet.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shangzuo.highvaluecabinet.R
 import com.shangzuo.highvaluecabinet.app.FaceApp
 import com.shangzuo.highvaluecabinet.app.base.BaseActivity
 import com.shangzuo.highvaluecabinet.databinding.ActivityFaceManageBinding
 import com.shangzuo.highvaluecabinet.ui.viewmodel.FaceManageViewModel
 import com.shangzuo.highvaluecabinet.ui.widget.arcface.facedb.entity.FaceEntity
+import java.util.LinkedList
 
 class FaceManageActivity : BaseActivity<FaceManageViewModel, ActivityFaceManageBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
@@ -24,7 +23,8 @@ class FaceManageActivity : BaseActivity<FaceManageViewModel, ActivityFaceManageB
         mBind.rvFacePhoto.adapter = facePhotoAdapter
 
         mViewModel.faceList.observe(this){
-            facePhotoAdapter.submitList(it)
+            facePhotoAdapter.submitList(LinkedList(it))
+            facePhotoAdapter.notifyDataSetChanged()
         }
 
         mViewModel.getFaceList()
