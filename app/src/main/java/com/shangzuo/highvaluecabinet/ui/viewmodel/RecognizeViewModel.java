@@ -287,6 +287,7 @@ public class RecognizeViewModel extends BaseViewModel implements RecognizeCallba
 
         // 填入在设置界面设置好的配置信息
         boolean enableLive = !ConfigUtil.getLivenessDetectType(context).equals(context.getString(R.string.value_liveness_type_disable));
+        Log.e(TAG, "init: enableLive"+enableLive );
         boolean enableFaceQualityDetect = ConfigUtil.isEnableImageQualityDetect(context);
         boolean enableFaceMoveLimit = ConfigUtil.isEnableFaceMoveLimit(context);
         boolean enableFaceSizeLimit = ConfigUtil.isEnableFaceSizeLimit(context);

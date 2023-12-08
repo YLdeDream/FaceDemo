@@ -350,6 +350,15 @@ public class ConfigUtil {
     }
 
 
+    public static void setEnableLiveness(Context context,boolean isEnable) {
+        if (isEnable){
+            commitString(context, R.string.preference_liveness_detect_type, context.getString(R.string.value_liveness_type_rgb));
+        }else {
+            commitString(context, R.string.preference_liveness_detect_type,"");
+        }
+    }
+
+
     public static boolean isEnableImageQualityDetect(Context context) {
         return getBoolean(context, R.string.preference_enable_image_quality_detect, true);
     }
